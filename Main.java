@@ -1,38 +1,41 @@
-//Main.java 
-import java.util.*;
+// Name: Dhaerya More
+// PRN: 23070126033
+// Batch: AIML A2, 2023-27
+// Main.java
 
-class Main {
-    public static void main(String args[]) {
-        Scanner scan = new Scanner(System.in);
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         StudentOperations operations = new StudentOperations();
+        int choice;
 
-        System.out.println("How many students do you want to add?");
-        int numberOfStudents = scan.nextInt();
-        scan.nextLine(); // Consume the leftover newline character
+        do {
+            System.out.println("\nStudent Management System");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display Students");
+            System.out.println("3. Search by PRN");
+            System.out.println("4. Search by Name");
+            System.out.println("5. Search by Position");
+            System.out.println("6. Update Student");
+            System.out.println("7. Delete Student");
+            System.out.println("8. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
 
-        for (int i = 0; i < numberOfStudents; i++) {
-            System.out.println("Enter details for Student " + (i + 1) + ":");
-
-            System.out.println("Enter Name: ");
-            String name = scan.nextLine();
-
-            System.out.println("Enter PRN:");
-            int prn = scan.nextInt();
-            scan.nextInt(); // Consume the leftover newline character
-
-            System.out.println("Enter Branch: ");
-            String branch = scan.nextLine();
-
-            System.out.println("Enter CGPA: ");
-            float cgpa = scan.nextFloat();
-            scan.nextLine(); // Consume the leftover newline character
-
-            Student student = new Student(name, prn, branch, cgpa);
-            operations.addStudent(student);
-        }
-
-        System.out.println("\nDisplaying all students:");
-        operations.displayStudents();
+            switch (choice) {
+                case 1 -> operations.addStudent();
+                case 2 -> operations.displayStudents();
+                case 3 -> operations.searchByPRN();
+                case 4 -> operations.searchByName();
+                case 5 -> operations.searchByPosition();
+                case 6 -> operations.updateStudent();
+                case 7 -> operations.deleteStudent();
+                case 8 -> System.out.println("Exiting...");
+                default -> System.out.println("Invalid choice!");
+            }
+        } while (choice != 8);
     }
 }
-
